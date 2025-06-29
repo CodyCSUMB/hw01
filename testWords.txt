@@ -1,0 +1,4 @@
+SQUARE+
+CIRCLE+
+FISH+
+CAKE+
