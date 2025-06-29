@@ -109,6 +109,7 @@ public class Hangman {
       word = allWords.get(index);
     }
 
+    //set initialization of words
     guessedWords.add(word);
     secretWord = word;
     remainingGuesses = secretWord.length() - 1;
@@ -116,6 +117,9 @@ public class Hangman {
     guessedLetters = new ArrayList<>();
     guessedWord = new StringBuilder();
     guessedWord.append("_".repeat(guessedWord.length()));
+    if (debug) {
+      System.out.printf("word: %s\n", word);
+    }
     return word;
   }
 
@@ -181,8 +185,7 @@ public class Hangman {
    * @return A String representation of the game state.  Makes it testable.
    */
   public String displayGameState() {
-    //todo: make displayGameState follow JavaDoc
-    return "displayGameState NOT WORKING";
+      return String.format("%s\n%s\n%s\n%s", guessedWord, remainingGuesses, numberOfHints, guessedLetters);
   }
 
   /**

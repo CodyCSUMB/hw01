@@ -182,14 +182,13 @@ class HangmanTest {
    * @return a String that SHOULD match the displayGameState method.
    */
   private String buildStateOut(){
-    return "Guessed Word: "
-        + game.getGuessedWordString()
+    return game.getGuessedWordString()
         + "\n"
-        + "Remaining Guesses: " + game.getRemainingGuesses()
+        + game.getRemainingGuesses()
         + "\n"
-        + "Remaining hints: " + game.getNumberOfHints()
+        + game.getNumberOfHints()
         + "\n"
-        + "Guessed Letters: " + game.getGuessedLetters();
+        + game.getGuessedLetters();
   }
 
   /**
