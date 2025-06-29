@@ -210,7 +210,7 @@ class HangmanTest {
     }
 
     assertTrue(game.hasLost());
-    assertEquals(game.exit(), 0);
+    assertEquals(0, game.exit());
   }
 
   /**

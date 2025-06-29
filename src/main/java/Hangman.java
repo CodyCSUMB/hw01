@@ -197,9 +197,9 @@ public class Hangman {
    * return {@link Hangman#getScore()} otherwise return 0
    */
   public int exit(){
-    //todo: make exit follow JavaDoc
-    System.out.println("Exit not working!");
-    return -42;
+    remainingGuesses = 0;
+    System.out.println("Thanks for playing");
+    return hasWon() ? getScore() : 0;
   }
 
   /**
@@ -218,9 +218,20 @@ public class Hangman {
    *
    */
   public int getHint(){
-    //todo: make getHint follow JavaDoc
+    if (numberOfHints <= 0) {
+      System.out.println("No more hints!");
+      return numberOfHints;
+    }
 
-    return -42;
+    for (int i = 0; i < secretWord.length()-1; i++) {
+      char c = secretWord.charAt(i);
+      if (!guessedLetters.contains(c)) {
+        makeGuess(c);
+        numberOfHints--;
+        break;
+      }
+    }
+    return numberOfHints;
   }
 
   /**
