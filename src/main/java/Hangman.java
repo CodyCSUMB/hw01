@@ -116,7 +116,7 @@ public class Hangman {
     numberOfHints = Math.floorDiv(remainingGuesses, 2);
     guessedLetters = new ArrayList<>();
     guessedWord = new StringBuilder();
-    guessedWord.append("_".repeat(guessedWord.length()));
+    guessedWord = new StringBuilder("_".repeat(secretWord.length()));
     if (debug) {
       System.out.printf("word: %s\n", word);
     }
@@ -239,8 +239,7 @@ public class Hangman {
    * @return the difference of {@code allWords.size()} and {@code guessedWords().size()}
    */
   public int getCountWordsRemaining(){
-    //todo: make getCountWordsRemaining follow java dock
-   return -42;
+    return allWords.size() - guessedWords.size();
   }
 
   /**
@@ -249,8 +248,7 @@ public class Hangman {
    * {@link Hangman#guessedWord} otherwise {@code false}
    */
   public boolean hasWon() {
-    //todo: make hasWon follow JavaDoc
-    return false;
+    return !guessedWord.toString().contains(PLACEHOLDER);
   }
 
   /**
@@ -258,8 +256,7 @@ public class Hangman {
    * @return {@code true} if {@link Hangman#remainingGuesses} == 0. Otherwise {@code false}
    */
   public boolean hasLost() {
-    //todo: make hasLost follow JavaDoc
-    return false;
+    return remainingGuesses == 0;
   }
 
   /**
@@ -267,8 +264,7 @@ public class Hangman {
    * @return {@code true} if the results either {@link Hangman#hasWon()} or {@link Hangman#hasLost()} is true. Otherwise {@code false}
    */
   public boolean isGameOver() {
-    //todo: make isGameOver follow JavaDoc
-    return false;
+    return hasWon() || hasLost();
   }
 
   /**
@@ -276,8 +272,7 @@ public class Hangman {
    * @return {@link Hangman#remainingGuesses} + {@link Hangman#score}
    */
   public int getScore(){
-    //todo: make getScore follow JavaDoc
-    return -42;
+    return remainingGuesses + score;
   }
 
   /**
@@ -312,8 +307,33 @@ public class Hangman {
    * @return true if the character exists in {@link Hangman#secretWord} and has not been guessed
    */
   public boolean makeGuess(char letter) {
-//todo: make makeGuess  follow JavaDoc
-    return false;
+    letter = Character.toUpperCase(letter);
+
+    if (guessedLetters.contains(letter)) {
+      System.out.printf("%s has already been guessed\n", letter);
+      return false;
+    }
+
+    System.out.printf("You chose: %s\n", letter);
+    guessedLetters.add(letter);
+    boolean letterFound = false;
+
+    for (int i = 0; i < secretWord.length(); i++) {
+      if (secretWord.charAt(i) == letter) {
+        score++;
+        System.out.printf("guessed word length: %d\nsecret word length: %d\n", guessedWord.length(), secretWord.length());
+        guessedWord.setCharAt(i, letter);
+        letterFound = true;
+      }
+    }
+
+    if (!letterFound) {
+      remainingGuesses--;
+      System.out.printf("%s was not present!", letter);
+    } else {
+      System.out.printf("%s was present!", letter);
+    }
+    return letterFound;
   }
 
   /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
