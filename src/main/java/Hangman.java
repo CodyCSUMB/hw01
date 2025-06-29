@@ -102,8 +102,21 @@ public class Hangman {
    *
    */
   public String chooseWord() {
-    //TODO: Make chooseWord function
-    return "NOT WORKING";
+    int index = 0;
+    String word = allWords.get(index);
+    while (guessedWords.contains(word)) {
+      index++;
+      word = allWords.get(index);
+    }
+
+    guessedWords.add(word);
+    secretWord = word;
+    remainingGuesses = secretWord.length() - 1;
+    numberOfHints = Math.floorDiv(remainingGuesses, 2);
+    guessedLetters = new ArrayList<>();
+    guessedWord = new StringBuilder();
+    guessedWord.append("_".repeat(guessedWord.length()));
+    return word;
   }
 
   /**
