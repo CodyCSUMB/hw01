@@ -1,5 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 /**
@@ -9,8 +12,8 @@ import java.util.List;
  * <br>
  * It requires GameLoader.java to run.
  * <br>
- *  @author [FILL THIS IN] 
- *  @since [PUT THE DATE YOU STARTED WORKING ON THIS]
+ *  @author Cody Hopkins
+ *  @since 6/29/2025
  */
 
 public class Hangman {
@@ -120,9 +123,23 @@ public class Hangman {
    *
    */
   public boolean readFile(String fileToLoad){
-    //TODO: make readFile work
-    System.out.println("read file not implemented");
-    return false;
+    File file = new File(fileToLoad);
+    Scanner scanner;
+
+    try {
+      scanner = new Scanner(file);
+    } catch (FileNotFoundException e) {
+      System.out.printf("There was an issue ceating or reading %s\n.", file);
+      return false;
+    }
+      while (scanner.hasNextLine()) {
+        String token = scanner.nextLine();
+        if (debug) {
+          System.out.printf("adding: %s\n", token);
+        }
+        allWords.add(token);
+      }
+      return true;
   }
 
   /**
@@ -130,7 +147,7 @@ public class Hangman {
    * Calls the parameterized constructor with a parameter of {@code false }
    */
   public Hangman(){
-    //todo: make Hangman() follow the javadoc
+    this(false);
   }
 
   /**
@@ -138,7 +155,9 @@ public class Hangman {
    * @param debug if this is set to {@code true} then Strings will be displayed.  See individual method documentation for details.
    */
   public Hangman(boolean debug) {
-    //todo: make Hangman(boolean) follow JavaDoc
+    if (debug) {
+      this.debug = true;
+    }
   }
 
   /**
