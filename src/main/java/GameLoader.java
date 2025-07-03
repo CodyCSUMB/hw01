@@ -117,7 +117,7 @@ public class GameLoader {
     hangman.chooseWord();
 
     while (!hangman.isGameOver()) {
-      hangman.displayGameState();
+      System.out.print(hangman.displayGameState());
       System.out.println("Your options are:");
       System.out.println("\t 1: Guess a letter");
       if (hangman.getNumberOfHints() > 0) {
@@ -125,7 +125,7 @@ public class GameLoader {
       }
       System.out.println("\t 3: exit");
 
-      System.out.print("Enter your choice:");
+      System.out.print("Enter your choice: ");
 
       String input = scan.nextLine();
 
