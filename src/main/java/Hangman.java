@@ -223,7 +223,7 @@ public class Hangman {
       return numberOfHints;
     }
 
-    for (int i = 0; i < secretWord.length()-1; i++) {
+    for (int i = 0; i < secretWord.length(); i++) {
       char c = secretWord.charAt(i);
       if (!guessedLetters.contains(c)) {
         makeGuess(c);
