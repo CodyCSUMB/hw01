@@ -185,7 +185,7 @@ public class Hangman {
    * @return A String representation of the game state.  Makes it testable.
    */
   public String displayGameState() {
-      return String.format("%s\n%s\n%s\n%s", guessedWord, remainingGuesses, numberOfHints, guessedLetters);
+      return String.format("Guessed word: %s\nRemaining guesses: %s\nNumber of hints: %s\nGuessed letters: %s\n", guessedWord, remainingGuesses, numberOfHints, guessedLetters);
   }
 
   /**
@@ -321,7 +321,6 @@ public class Hangman {
     for (int i = 0; i < secretWord.length(); i++) {
       if (secretWord.charAt(i) == letter) {
         score++;
-        System.out.printf("guessed word length: %d\nsecret word length: %d\n", guessedWord.length(), secretWord.length());
         guessedWord.setCharAt(i, letter);
         letterFound = true;
       }
@@ -329,9 +328,9 @@ public class Hangman {
 
     if (!letterFound) {
       remainingGuesses--;
-      System.out.printf("%s was not present!", letter);
+      System.out.printf("%s was not present!\n", letter);
     } else {
-      System.out.printf("%s was present!", letter);
+      System.out.printf("%s was present!\n", letter);
     }
     return letterFound;
   }
